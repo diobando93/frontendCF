@@ -262,6 +262,12 @@ export default class ElectricityTable extends React.Component {
     var priceArray = this.state.priceArray
     var results = this.state.results
     var priceCalcute = this.state.priceCalcute
+    var resultsRender = []
+    var priceRender = []
+    for (var key in results) {
+      resultsRender.push(results[key].toFixed(3))
+      priceRender.push(priceCalcute[key].toFixed(3))
+    }
     //var aux = this.state.aux
 
     //console.log('render', calculate)
@@ -271,8 +277,8 @@ export default class ElectricityTable extends React.Component {
           <td>{o}</td>
           <td>{amountArray[i]}</td>
           <td>{priceArray[i]}</td>
-          <td>{results[i]}</td>
-          <td>{priceCalcute[i]}</td>
+          <td>{resultsRender[i]}</td>
+          <td>{priceRender[i]}</td>
           <td>
             <button onClick={context.handleItemDeleted.bind(context, i)}>Delete</button>
           </td>
@@ -313,8 +319,9 @@ export default class ElectricityTable extends React.Component {
           <input type="text" value={this.state.amount} onChange={this.updateAmount.bind(this)} />
           <label>Unit Price (USD/kWh)</label>
           <input type="text" value={this.state.price} onChange={this.updatePrice.bind(this)} />
-          <label>Enter a month</label>
+          <label>Select a</label>
           <select type="text" value={this.state.time} onChange={this.updateTime.bind(this)}>
+            <option>Month</option>
             <option>January</option>
             <option>February</option>
             <option>March</option>

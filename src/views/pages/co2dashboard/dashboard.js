@@ -237,6 +237,18 @@ class dashboard extends Component {
         co2eArray.push(co2eDecemberSum)
       }
       totalSum = stationarySum + mobileSum + energySum
+      if (totalSum <= 100) {
+        stationarySum = stationarySum / totalSum
+        mobileSum = mobileSum / totalSum
+        energySum = energySum / totalSum
+      }
+      if (totalSum > 100) {
+        stationarySum = (stationarySum * 100) / totalSum
+        mobileSum = (mobileSum * 100) / totalSum
+        energySum = (energySum * 100) / totalSum
+        totalSum = 100
+      }
+
       console.log(time)
       console.log(co2eArray)
       console.log('suma de vectores', stationarySum)
@@ -264,7 +276,7 @@ class dashboard extends Component {
         noPartial: no2Array,
         resultDB: getResultObj,
         months: test3,
-        stationarySumRender: stationarySum / 100,
+        stationarySumRender: stationarySum,
         mobileSumRender: mobileSum,
         energySumRender: energySum,
         totalSumRender: totalSum,

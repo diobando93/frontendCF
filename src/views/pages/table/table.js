@@ -33,8 +33,9 @@ export default class DynamicTable extends React.Component {
     }
   }
   GetRequestedDetails = () => {
-    GetRestObject.GetRestRequest(`/api/factors`, (getResultObj) => {
+    GetRestObject.GetRestRequest('api/factors', (getResultObj) => {
       //console.log(getResultObj)
+
       getResultObj.splice(0, 0, 'Names')
       this.setState({ nombres: getResultObj })
     })
@@ -128,12 +129,14 @@ export default class DynamicTable extends React.Component {
     console.log(priceCalcute)
     console.log(time)
 
-    var targetUrl = '/api/factors'
+    var targetUrl = 'api/factors'
     const res = fetch(targetUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
+      //mode: 'no-cors',
       body: JSON.stringify({
         requestData: {
           name: items,
@@ -264,6 +267,13 @@ export default class DynamicTable extends React.Component {
     var priceArray = this.state.priceArray
     var results = this.state.results
     var priceCalcute = this.state.priceCalcute
+    var resultsRender = []
+    var priceRender = []
+    for (var key in results) {
+      resultsRender.push(results[key].toFixed(3))
+      priceRender.push(priceCalcute[key].toFixed(3))
+    }
+
     //var aux = this.state.aux
 
     //console.log('render', calculate)
@@ -273,8 +283,8 @@ export default class DynamicTable extends React.Component {
           <td>{o}</td>
           <td>{amountArray[i]}</td>
           <td>{priceArray[i]}</td>
-          <td>{results[i]}</td>
-          <td>{priceCalcute[i]}</td>
+          <td>{resultsRender[i]}</td>
+          <td>{priceRender[i]}</td>
           <td>
             <button onClick={context.handleItemDeleted.bind(context, i)}>Delete</button>
           </td>
