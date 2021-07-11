@@ -3,6 +3,8 @@ import Sidebar from '../../../components/SideBarD'
 import Header from '../../../components/Header'
 import GetRestObject from '../../../api/ConnectServerGet'
 
+import { CCol } from '@coreui/react'
+
 function syncDelay(milliseconds) {
   var start = new Date().getTime()
   var end = 0
@@ -299,6 +301,12 @@ export default class DynamicTable extends React.Component {
         <Sidebar />
         <div className="wrapper d-flex flex-column min-vh-100 bg-light">
           <Header />
+          <CCol sm="5">
+            <h4 id="traffic" className="card-title mb-0">
+              Stationary Emissions (Scope 1)
+            </h4>
+            <div className="small text-medium-emphasis">Year 2021</div>
+          </CCol>
           <table className="">
             <thead>
               <tr>

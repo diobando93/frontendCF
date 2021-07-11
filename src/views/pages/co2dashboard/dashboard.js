@@ -237,17 +237,10 @@ class dashboard extends Component {
         co2eArray.push(co2eDecemberSum)
       }
       totalSum = stationarySum + mobileSum + energySum
-      if (totalSum <= 100) {
-        stationarySum = stationarySum / totalSum
-        mobileSum = mobileSum / totalSum
-        energySum = energySum / totalSum
-      }
-      if (totalSum > 100) {
-        stationarySum = (stationarySum * 100) / totalSum
-        mobileSum = (mobileSum * 100) / totalSum
-        energySum = (energySum * 100) / totalSum
-        totalSum = 100
-      }
+      stationarySum = (stationarySum * 100) / totalSum
+      mobileSum = (mobileSum * 100) / totalSum
+      energySum = (energySum * 100) / totalSum
+      totalSum = 100
 
       console.log(time)
       console.log(co2eArray)
@@ -305,7 +298,7 @@ class dashboard extends Component {
                 <CRow>
                   <CCol sm="5">
                     <h4 id="traffic" className="card-title mb-0">
-                      Emissions
+                      Carbon Footprint
                     </h4>
                     <div className="small text-medium-emphasis">Year 2021</div>
                   </CCol>
